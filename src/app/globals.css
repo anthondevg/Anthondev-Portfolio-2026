@@ -12,7 +12,7 @@
 }
 
 @layer base {
-  html { @apply scroll-smooth bg-ink; }
+  html { @apply overflow-x-clip scroll-smooth bg-ink; }
   body {
     @apply m-0 bg-ink font-sans text-base text-paper antialiased;
     background-image:
@@ -29,6 +29,12 @@
 
 /* Case-study styles remain scoped here; the landing page uses Tailwind utilities. */
 @layer components {
+  .hero-noise {
+    opacity: .055;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    mix-blend-mode: soft-light;
+  }
   .section-shell { @apply mx-auto w-[min(100%-48px,1240px)] max-md:w-[min(100%-32px,1240px)]; }
   .placeholder-tag { @apply w-max border border-violet-light/40 px-2 py-1 text-[.48rem] font-bold uppercase tracking-[.11em] text-[#baa5f7]; }
   .case-page { @apply min-h-screen; }

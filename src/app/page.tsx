@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { CtaButton } from "@/components/CtaButton";
+import { HeroBackdrop } from "@/components/HeroBackdrop";
+import { HeroSocials } from "@/components/HeroSocials";
 import { HeroVisual } from "@/components/HeroVisual";
 import { Navigation } from "@/components/Navigation";
 import { Reveal } from "@/components/Reveal";
@@ -37,7 +39,8 @@ export default function Home() {
       <a className="fixed top-4 left-4 z-[100] -translate-y-[200%] bg-paper px-4 py-3 text-ink transition-transform focus:translate-y-0" href="#main">Skip to content</a>
       <Navigation />
       <main id="main">
-        <section className={`relative grid min-h-svh grid-cols-[minmax(0,1.04fr)_minmax(390px,.96fr)] items-center gap-8 overflow-hidden pt-[148px] pb-[52px] max-md:min-h-0 max-md:grid-cols-1 max-md:pt-[150px] max-sm:pt-[125px] max-sm:pb-8 ${sectionShell}`} aria-labelledby="hero-title">
+        <section className={`relative grid min-h-svh grid-cols-[minmax(0,1.04fr)_minmax(390px,.96fr)] items-center gap-8 overflow-visible pt-[148px] pb-[52px] max-md:min-h-0 max-md:grid-cols-1 max-md:pt-[150px] max-sm:pt-[125px] max-sm:pb-8 ${sectionShell}`} aria-labelledby="hero-title">
+          <HeroBackdrop />
           <div className="absolute -z-1 top-[8%] left-[12%] h-[31rem] w-[42rem] rounded-full bg-violet/10 blur-[150px]" aria-hidden="true" />
           <div className="relative z-3 pb-8">
             <p className={`${eyebrow} relative isolate flex w-max max-w-full items-center gap-3 overflow-hidden rounded-full border border-[#7ee2ab]/25 bg-[#7ee2ab]/[.055] px-4 py-2.5 text-[#d8f8e7] shadow-[inset_0_1px_0_rgba(255,255,255,.06),0_10px_35px_rgba(0,0,0,.18)] backdrop-blur-sm max-sm:text-[.58rem] max-sm:tracking-[.1em]`}>
@@ -71,6 +74,7 @@ export default function Home() {
                 </span>
               </Link>
             </div>
+            <HeroSocials />
           </div>
           <HeroVisual />
           <div className="absolute right-0 bottom-[25px] left-0 flex justify-between text-[.5rem] font-bold tracking-[.12em] text-[#625c69] max-md:hidden" aria-hidden="true"><span>PORTFOLIO / 2026</span><span>10.4806° N · 66.9036° W</span></div>
