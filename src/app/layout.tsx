@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/fraunces";
 import "@fontsource-variable/manrope";
-import "@fontsource-variable/newsreader";
 import "@fontsource/momo-trust-display";
 import "./globals.css";
 

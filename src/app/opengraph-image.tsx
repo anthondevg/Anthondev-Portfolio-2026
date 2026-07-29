@@ -1,10 +1,14 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 export const alt = "Anthony Gonzalez — AI Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+const fraunces = readFile(join(process.cwd(), "src/app/fraunces.ttf"));
+
+export default async function OpenGraphImage() {
   return new ImageResponse(
     (
       <div
@@ -30,7 +34,7 @@ export default function OpenGraphImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span
             style={{
-              fontFamily: "serif",
+              fontFamily: "Fraunces",
               fontSize: 112,
               lineHeight: 0.9,
               letterSpacing: "-6px",
@@ -44,6 +48,16 @@ export default function OpenGraphImage() {
         </div>
       </div>
     ),
-    size,
+    {
+      ...size,
+      fonts: [
+        {
+          name: "Fraunces",
+          data: await fraunces,
+          style: "normal",
+          weight: 400,
+        },
+      ],
+    },
   );
 }

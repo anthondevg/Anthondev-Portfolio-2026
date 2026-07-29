@@ -62,7 +62,7 @@ function IntelligenceObject() {
 export function Scene3D() {
   return (
     <Canvas
-      className="scene-canvas"
+      className="!absolute inset-0 z-1"
       camera={{ position: [0, 0, 5.1], fov: 42 }}
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
