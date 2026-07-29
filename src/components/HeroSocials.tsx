@@ -18,9 +18,16 @@ function GitHubIcon({ className }: SocialIconProps) {
   );
 }
 
+function UpworkIcon({ className }: SocialIconProps) {
+  return (
+    <img className={className} src="/upwork-icon.svg" alt="" aria-hidden="true" />
+  );
+}
+
 const socials = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/anthondev/", Icon: LinkedInIcon },
   { label: "GitHub", href: "https://github.com/anthondevg", Icon: GitHubIcon },
+  { label: "Upwork", href: "https://www.upwork.com/freelancers/~0176de8d20e4948f58", Icon: UpworkIcon },
 ];
 
 export function HeroSocials() {

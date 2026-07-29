@@ -14,12 +14,12 @@ export function HomeFooter() {
         ANTHON<span className="text-violet-light">DEV</span>
       </Link>
 
-      <p>AI Engineer · Caracas, VE · Remote worldwide</p>
+      <p>AI Engineer · San Fernando de Apure, VE · Remote worldwide</p>
 
       <div className="flex gap-6">
         <a
           className="hover:text-paper"
-          href="https://github.com"
+          href="https://github.com/anthondevg"
           target="_blank"
           rel="noreferrer"
         >
@@ -27,11 +27,19 @@ export function HomeFooter() {
         </a>
         <a
           className="hover:text-paper"
-          href="https://linkedin.com"
+          href="https://www.linkedin.com/in/anthondev/"
           target="_blank"
           rel="noreferrer"
         >
           LinkedIn <span aria-hidden="true">↗</span>
+        </a>
+        <a
+          className="hover:text-paper"
+          href="https://www.upwork.com/freelancers/~0176de8d20e4948f58"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Upwork <span aria-hidden="true">↗</span>
         </a>
       </div>
     </footer>

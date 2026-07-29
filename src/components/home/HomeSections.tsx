@@ -96,6 +96,11 @@ const contactLinks = [
     value: "linkedin.com/in/anthondev",
     href: "https://www.linkedin.com/in/anthondev/",
   },
+  {
+    label: "Upwork",
+    value: "upwork.com/freelancers/~0176de8d20e4948f58",
+    href: "https://www.upwork.com/freelancers/~0176de8d20e4948f58",
+  },
 ];
 
 type WorkSectionProps = {
@@ -117,6 +122,22 @@ function updateProjectGlow(event: PointerEvent<HTMLElement>) {
   event.currentTarget.style.setProperty(
     "--project-glow-y",
     `${event.clientY - bounds.top}px`,
+  );
+}
+
+function GitHubMark() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path fillRule="evenodd" d="M12 2.5a9.5 9.5 0 0 0-3 18.51c.47.09.64-.2.64-.45v-1.68c-2.62.57-3.17-1.11-3.17-1.11-.43-1.08-1.04-1.37-1.04-1.37-.85-.58.06-.57.06-.57.94.07 1.43.96 1.43.96.84 1.43 2.2 1.02 2.73.78.08-.6.33-1.02.6-1.25-2.1-.24-4.3-1.05-4.3-4.67 0-1.03.37-1.88.97-2.54-.1-.24-.42-1.2.1-2.5 0 0 .79-.25 2.61.97A9.1 9.1 0 0 1 12 6.75c.8 0 1.6.1 2.36.32 1.82-1.22 2.61-.97 2.61-.97.52 1.3.2 2.26.1 2.5.6.66.97 1.51.97 2.54 0 3.63-2.2 4.42-4.3 4.65.34.3.64.87.64 1.75v2.6c0 .25.17.54.64.45A9.5 9.5 0 0 0 12 2.5Z" clipRule="evenodd" />
+    </svg>
+  );
+}
+
+function ExternalArrowIcon() {
+  return (
+    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+      <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
@@ -430,11 +451,6 @@ function ProjectCard({
   project: WorkItem;
   index: number;
 }) {
-  const externalHref = project.links?.live ?? project.links?.source;
-  const externalLabel = project.links?.live
-    ? `Visit ${project.title}`
-    : `View the ${project.title} repository`;
-
   return (
     <Reveal>
       <article
@@ -450,9 +466,22 @@ function ProjectCard({
 
         <div className="relative z-10 flex items-center justify-between gap-4 text-[.52rem] font-bold uppercase tracking-[.14em] text-[#928a9d]">
           <span>Case / 0{index + 1}</span>
-          <span className="border border-violet-light/40 px-2 py-1 text-[.46rem] text-[#baa5f7]">
-            {project.status}
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="border border-violet-light/40 px-2 py-1 text-[.46rem] text-[#baa5f7]">
+              {project.status}
+            </span>
+            {project.links?.source ? (
+              <a
+                className="grid h-7 w-7 place-items-center rounded-full border border-paper/15 text-[#a8a1b4] transition-colors duration-300 hover:text-paper focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-light"
+                href={project.links.source}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`View the ${project.title} repository`}
+              >
+                <GitHubMark />
+              </a>
+            ) : null}
+          </div>
         </div>
 
         <div className="relative z-10 mt-6 flex flex-1 flex-col">
@@ -460,24 +489,27 @@ function ProjectCard({
             <span>{project.role}</span>
           </div>
 
-          <div className="mt-3 mb-2 flex items-start justify-between gap-4">
+          <div className="mt-3 mb-2">
+            <div className="flex min-w-0 items-center gap-1.5">
             <Link
               className="font-display text-[clamp(2rem,3.2vw,3.15rem)] leading-[.95] font-normal tracking-[-.045em] transition-colors duration-300 hover:text-violet-light focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-light"
               href={`/work/${project.slug}`}
             >
               {project.title}
             </Link>
-            {externalHref ? (
+            {project.links?.live ? (
               <a
-                className="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-full border border-paper/15 text-sm text-[#a8a1b4] transition-[background-color,border-color,color,transform] duration-500 hover:rotate-45 hover:border-violet-light/70 hover:bg-violet-light hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-light"
-                href={externalHref}
+                className="grid h-5 w-5 shrink-0 place-items-center text-[0px] text-violet-light transition-[color,transform] duration-300 hover:translate-x-0.5 hover:-translate-y-0.5 hover:text-paper focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-light"
+                href={project.links.live}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={externalLabel}
+                aria-label={`Visit ${project.title}`}
               >
+                <ExternalArrowIcon />
                 â†—
               </a>
             ) : null}
+            </div>
           </div>
           <p className="m-0 max-w-[510px] pr-10 text-[.8rem] leading-6 text-muted">
             {project.summary}
@@ -528,7 +560,7 @@ function ContactLink({
         {value}
       </strong>
       <i className="grid h-10 w-10 place-items-center rounded-full border border-paper/15 not-italic transition group-hover:bg-paper group-hover:text-ink">
-        ↗
+                <ExternalArrowIcon />
       </i>
     </a>
   );

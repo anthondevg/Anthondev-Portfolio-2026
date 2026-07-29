@@ -28,8 +28,8 @@ export default function Home() {
         <HomeHero />
         <FocusMarquee />
         <WorkSection projects={projects} />
-        <AboutSection />
         <ExperienceSection />
+        <AboutSection />
         <ContactSection />
       </main>
 

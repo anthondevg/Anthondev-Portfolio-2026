@@ -48,6 +48,13 @@ export function Navigation() {
               {link.label}
             </Link>
           ))}
+          <a
+            href="https://www.linkedin.com/in/anthondev/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
         </div>
       </nav>
     </header>
