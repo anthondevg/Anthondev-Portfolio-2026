@@ -21,7 +21,7 @@ export function Navigation() {
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full bg-[linear-gradient(to_bottom,rgba(8,7,13,.93),transparent)]">
-      <nav className="mx-auto flex h-[92px] w-[min(100%-48px,1370px)] items-center justify-between max-md:w-[min(100%-32px,1240px)] max-sm:h-[78px]" aria-label="Primary navigation">
+      <nav className="mx-auto flex h-[92px] w-[min(100%-48px,1250px)] items-center justify-between max-md:w-[min(100%-32px,1240px)] max-sm:h-[78px]" aria-label="Primary navigation">
         <Link className="text-[.86rem] font-extrabold tracking-[-.04em]" href="/" onClick={() => setOpen(false)}>
           ANTHON<span className="text-violet-light">DEV</span>
         </Link>

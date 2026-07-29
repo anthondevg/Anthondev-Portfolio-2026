@@ -49,7 +49,7 @@ export function CtaButton({
         +
       </span>
       <span
-        className="relative isolate flex min-h-[2.85rem] items-center overflow-hidden px-[clamp(1.2rem,2vw,1.75rem)] py-2 font-cta text-[clamp(1.05rem,1.45vw,1.3rem)] font-normal leading-none tracking-[-.025em] transition-[background] duration-150"
+        className="relative isolate flex min-h-[2.85rem] items-center overflow-hidden px-[clamp(1.2rem,2vw,1.75rem)] py-2 font-sans text-[clamp(1.05rem,1.45vw,1.3rem)] font-bold leading-none tracking-[-.025em] transition-[background] duration-150"
         style={{
           background:
             "radial-gradient(170px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(103, 61, 205, .2), transparent 68%), #0c0c0d",
@@ -72,7 +72,7 @@ export function CtaButton({
 
         <span className="relative z-10">{label}</span>
         {accent ? (
-          <em className="relative z-10 ml-[.24em] not-italic text-[#9a4267]">
+          <em className="relative z-10 ml-[.24em] not-italic text-purple-300">
             {accent}
           </em>
         ) : null}

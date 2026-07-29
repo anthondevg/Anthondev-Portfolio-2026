@@ -6,7 +6,7 @@
   --color-muted: #a8a1b4;
   --color-violet: #7047ff;
   --color-violet-light: #a88cff;
-  --font-sans: "Fraunces Variable", Georgia, serif;
+  --font-sans: "TASA Orbiter Variable", Arial, sans-serif;
   --font-display: "Fraunces Variable", Georgia, serif;
   --font-cta: "Momo Trust Display", "Fraunces Variable", Georgia, serif;
 }
@@ -66,7 +66,7 @@
   .case-next i { @apply not-italic; }
 }
 
-@keyframes marquee { to { transform: translateX(-36%); } }
+@keyframes marquee { to { transform: translateX(-50%); } }
 @keyframes orbit { to { transform: rotate(1turn); } }
 @keyframes availability-shimmer {
   0%, 18% { transform: translateX(-220%); }
