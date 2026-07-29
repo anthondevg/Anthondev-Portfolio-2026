@@ -13,6 +13,10 @@
 
 @layer base {
   html { @apply overflow-x-clip scroll-smooth bg-ink; }
+  html {
+    scrollbar-color: rgba(240, 236, 245, .38) transparent;
+    scrollbar-width: thin;
+  }
   body {
     @apply m-0 bg-ink font-sans text-base text-paper antialiased;
     background-image:
@@ -25,6 +29,36 @@
   a { @apply text-inherit no-underline; }
   button, a { -webkit-tap-highlight-color: transparent; }
   button:focus-visible, a:focus-visible { @apply outline-2 outline-offset-5 outline-violet-light; }
+}
+
+/* A slim, translucent scroll indicator that echoes the site's violet atmosphere. */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 3rem;
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(rgba(240, 236, 245, .34), rgba(168, 140, 255, .2)) padding-box,
+    linear-gradient(145deg, rgba(255, 255, 255, .34), rgba(168, 140, 255, .08)) border-box;
+  box-shadow: 0 0 16px rgba(112, 71, 255, .16), inset 0 1px 1px rgba(255, 255, 255, .28);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(rgba(240, 236, 245, .52), rgba(168, 140, 255, .36)) padding-box,
+    linear-gradient(145deg, rgba(255, 255, 255, .5), rgba(168, 140, 255, .2)) border-box;
+  box-shadow: 0 0 22px rgba(112, 71, 255, .3), inset 0 1px 1px rgba(255, 255, 255, .4);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 /* Case-study styles remain scoped here; the landing page uses Tailwind utilities. */

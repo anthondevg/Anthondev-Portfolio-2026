@@ -4,6 +4,8 @@ An editorial portfolio for presenting AI engineering work, product thinking,
 and selected case studies. Built with Next.js, TypeScript, Tailwind CSS,
 Motion, React Three Fiber, and local MDX content.
 
+![Portfolio hero preview](./public/readme-hero.png)
+
 ## Highlights
 
 - Responsive single-page portfolio with dedicated case study routes
