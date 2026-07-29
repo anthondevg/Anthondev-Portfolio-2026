@@ -14,7 +14,7 @@
 @layer base {
   html { @apply overflow-x-clip scroll-smooth bg-ink; }
   html {
-    scrollbar-color: rgba(240, 236, 245, .38) transparent;
+    scrollbar-color: rgba(168, 140, 255, .58) rgba(8, 7, 13, .5);
     scrollbar-width: thin;
   }
   body {
@@ -31,30 +31,31 @@
   button:focus-visible, a:focus-visible { @apply outline-2 outline-offset-5 outline-violet-light; }
 }
 
-/* A slim, translucent scroll indicator that echoes the site's violet atmosphere. */
+/* A restrained violet signal that stays inside the observatory palette. */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(8, 7, 13, .5);
+  box-shadow: inset 1px 0 rgba(240, 236, 245, .05);
 }
 
 ::-webkit-scrollbar-thumb {
   min-height: 3rem;
-  border: 3px solid transparent;
+  border: 2px solid rgba(8, 7, 13, .7);
   border-radius: 999px;
   background:
-    linear-gradient(rgba(240, 236, 245, .34), rgba(168, 140, 255, .2)) padding-box,
-    linear-gradient(145deg, rgba(255, 255, 255, .34), rgba(168, 140, 255, .08)) border-box;
-  box-shadow: 0 0 16px rgba(112, 71, 255, .16), inset 0 1px 1px rgba(255, 255, 255, .28);
+    linear-gradient(180deg, rgba(168, 140, 255, .62), rgba(91, 58, 174, .46)) padding-box,
+    linear-gradient(145deg, rgba(240, 236, 245, .28), rgba(112, 71, 255, .08)) border-box;
+  box-shadow: 0 0 14px rgba(112, 71, 255, .2), inset 0 1px 1px rgba(240, 236, 245, .2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background:
-    linear-gradient(rgba(240, 236, 245, .52), rgba(168, 140, 255, .36)) padding-box,
-    linear-gradient(145deg, rgba(255, 255, 255, .5), rgba(168, 140, 255, .2)) border-box;
-  box-shadow: 0 0 22px rgba(112, 71, 255, .3), inset 0 1px 1px rgba(255, 255, 255, .4);
+    linear-gradient(180deg, rgba(188, 165, 255, .8), rgba(112, 71, 255, .6)) padding-box,
+    linear-gradient(145deg, rgba(240, 236, 245, .42), rgba(168, 140, 255, .24)) border-box;
+  box-shadow: 0 0 20px rgba(112, 71, 255, .38), inset 0 1px 1px rgba(240, 236, 245, .32);
 }
 
 ::-webkit-scrollbar-corner {
@@ -102,6 +103,9 @@
 
 @keyframes marquee { to { transform: translateX(-50%); } }
 @keyframes orbit { to { transform: rotate(1turn); } }
+@keyframes mesh-drift {
+  to { background-position: 0 44px, 0 44px; }
+}
 @keyframes availability-shimmer {
   0%, 18% { transform: translateX(-220%); }
   58%, 100% { transform: translateX(520%); }
@@ -109,6 +113,31 @@
 @keyframes availability-pulse {
   0% { opacity: .55; transform: scale(.8); }
   70%, 100% { opacity: 0; transform: scale(2.25); }
+}
+
+.work-mesh {
+  position: relative;
+  height: clamp(7rem, 13vw, 11rem);
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  overflow: hidden;
+  perspective: 520px;
+}
+
+.work-mesh::before {
+  position: absolute;
+  bottom: -5.5rem;
+  left: -30%;
+  width: 160%;
+  height: 18rem;
+  content: "";
+  opacity: .52;
+  background-image:
+    linear-gradient(rgba(168, 140, 255, .34) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 140, 255, .34) 1px, transparent 1px);
+  background-size: 44px 44px;
+  transform: rotateX(64deg);
+  transform-origin: bottom;
+  animation: mesh-drift 14s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

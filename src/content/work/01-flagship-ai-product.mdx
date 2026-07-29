@@ -1,47 +1,64 @@
 ---
-title: "Your flagship AI product"
-slug: "flagship-ai-product"
-summary: "Replace this draft with the strongest example of an intelligent product you helped take from problem to production."
-role: "AI Engineer · add scope"
-year: "20XX"
+title: "AI Job Search UI"
+slug: "ai-job-search-ui"
+summary: "An AI-assisted workflow for turning a structured CV into tailored, evidence-based job applications."
+role: "AI Full-Stack Developer"
+year: "2026"
 stack:
-  - "Add model"
-  - "Add backend"
-  - "Add interface"
+  - "Google Gemini"
+  - "Supabase"
+  - "React PDF"
 cover: "gradient-violet"
 featured: true
-status: "CONTENT PLACEHOLDER"
-links: {}
+status: "REPOSITORY"
+links:
+  source: "https://github.com/anthondevg/ai-job-search-UI"
 ---
 
 ## The problem
 
-Describe the specific user or business problem. Add enough context to make the stakes clear without exposing confidential information.
+Tailoring a CV to each job application is repetitive and easy to get wrong when
+the underlying profile changes from one version to another. AI Job Search UI
+uses an imported CV as the source of truth, so adaptations stay grounded in the
+candidate's actual experience.
 
-## Context
+## Import a structured CV
 
-Add the team, timeline, constraints, and the state of the product when you joined.
+The `/cv` workspace has an Import tab for uploading a PDF resume up to 10 MB.
+Google Gemini extracts personal information, summary, skills, experience,
+education, languages, and certifications into a structured profile. A strict
+parsing prompt prevents invented details: fields without source data remain
+empty.
 
-## My responsibility
+Users can preview the extracted profile, manage a library of saved CVs, choose
+an active CV, or delete one. Parsed profiles are stored per browser session in
+Supabase and the interface explicitly marks the active profile as the source of
+truth.
 
-Explain what you personally owned and where you collaborated with product, design, or engineering partners.
+## Analyze job opportunities
 
-## Process
+The Generate tab accepts job descriptions from LinkedIn, Indeed, InfoJobs,
+company career pages, and similar sources. It checks descriptions between 50
+and 50,000 characters and persists the current draft in local storage.
 
-Show how you moved from uncertainty to a testable direction: discovery, prototypes, technical spikes, evaluation, and iteration.
+The analysis extracts keywords plus required and preferred skills. When an
+active CV is available, it also evaluates compatibility, including location
+eligibility such as remote policies or country restrictions. The result
+separates skills match from the final score, which can include a location
+penalty, and presents strengths and gaps clearly.
 
-## The solution
+## Generate a tailored CV
 
-Describe the final experience and the technical decisions that made it reliable, useful, and maintainable.
+Users can generate a tailored CV in English or Spanish. The selected language
+controls the summary, bullet points, and PDF section headings while skill and
+technology names remain unchanged.
 
-## Architecture
+Generated content rewrites and reorders information from the source profile
+only; it does not invent skills or experience. The tailored preview includes
+adaptation notes for matched keywords, skills, and gaps, then supports PDF
+preview and download through `@react-pdf/renderer`.
 
-Summarize the model layer, application services, data flow, interface, observability, and safety boundaries.
+## Repository
 
-## Results
-
-Add verified outcomes only: adoption, quality improvements, time saved, revenue, reliability, or user feedback.
-
-## What I learned
-
-Close with one honest insight that changed how you approach similar systems.
+The project is not deployed publicly. Explore the implementation in the
+[AI Job Search UI repository](https://github.com/anthondevg/ai-job-search-UI).

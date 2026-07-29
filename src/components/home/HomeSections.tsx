@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import type { PointerEvent } from "react";
 import { ExperienceTimeline } from "@/components/home/ExperienceTimeline";
 import { Reveal } from "@/components/Reveal";
 import type { WorkItem } from "@/lib/work";
@@ -82,12 +85,6 @@ const experience = [
   },
 ];
 
-const projectArt = [
-  "bg-[#24124b] bg-[linear-gradient(140deg,transparent,rgba(55,24,123,.6))]",
-  "bg-[#25121f] bg-[radial-gradient(circle_at_20%_20%,#874063,transparent_35%),linear-gradient(145deg,#21101d,#321323)]",
-  "bg-[#11101a] bg-[linear-gradient(125deg,rgba(90,72,130,.55),transparent)]",
-];
-
 const contactLinks = [
   {
     label: "Email",
@@ -110,6 +107,18 @@ type SectionHeadingProps = {
   title: string;
   copy: string;
 };
+
+function updateProjectGlow(event: PointerEvent<HTMLElement>) {
+  const bounds = event.currentTarget.getBoundingClientRect();
+  event.currentTarget.style.setProperty(
+    "--project-glow-x",
+    `${event.clientX - bounds.left}px`,
+  );
+  event.currentTarget.style.setProperty(
+    "--project-glow-y",
+    `${event.clientY - bounds.top}px`,
+  );
+}
 
 export function FocusMarquee() {
   const focusAreas = [
@@ -151,7 +160,7 @@ export function WorkSection({ projects }: WorkSectionProps) {
   return (
     <section
       id="work"
-      className={`${sectionShell} py-[clamp(7rem,12vw,11rem)]`}
+      className={`${sectionShell} py-[clamp(5rem,9vw,8rem)]`}
     >
       <SectionHeading
         label="Selected work"
@@ -159,11 +168,13 @@ export function WorkSection({ projects }: WorkSectionProps) {
         copy="A curated set of product stories. Real project information can replace the clearly marked draft content below."
       />
 
-      <div className="grid gap-px border-y border-paper/15 bg-paper/15">
+      <div className="grid gap-4 md:grid-cols-2">
         {projects.map((project, index) => (
           <ProjectCard project={project} index={index} key={project.slug} />
         ))}
       </div>
+
+      <div className="work-mesh" aria-hidden="true" />
     </section>
   );
 }
@@ -419,64 +430,66 @@ function ProjectCard({
   project: WorkItem;
   index: number;
 }) {
-  const artwork = projectArt[index] ?? projectArt[0];
+  const externalHref = project.links?.live ?? project.links?.source;
+  const externalLabel = project.links?.live
+    ? `Visit ${project.title}`
+    : `View the ${project.title} repository`;
 
   return (
     <Reveal>
-      <Link
-        className="group relative grid min-h-[430px] grid-cols-[minmax(330px,.9fr)_minmax(0,1.1fr)] bg-ink transition-[background-color,box-shadow] duration-500 hover:bg-[#0d0b13] hover:shadow-[inset_0_0_0_1px_rgba(168,140,255,.22)] focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-violet-light max-md:grid-cols-[.86fr_1.14fr] max-sm:grid-cols-1"
-        href={`/work/${project.slug}`}
-        aria-label={`Read case study: ${project.title}`}
+      <article
+        className="group relative isolate flex min-h-[238px] flex-col overflow-hidden rounded-md border border-transparent p-5 transition-[background,box-shadow,transform] duration-500 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,.2),0_0_38px_rgba(112,71,255,.1)] focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-light"
+        onPointerMove={updateProjectGlow}
+        style={{
+          background:
+            "linear-gradient(#15141a, #15141a) padding-box, radial-gradient(110px circle at var(--project-glow-x, 78%) var(--project-glow-y, 0%), rgba(158, 119, 255, .9), rgba(93, 55, 181, .42) 34%, transparent 70%) border-box, rgba(240, 236, 245, .11)",
+        }}
       >
-        <div
-          className={`relative isolate min-h-[430px] overflow-hidden p-6 before:absolute before:-z-2 before:top-[16%] before:left-[17%] before:aspect-square before:w-[66%] before:rounded-full before:border before:border-white/15 before:bg-[linear-gradient(145deg,rgba(255,255,255,.24),transparent_55%)] before:transition-transform before:duration-700 after:absolute after:-z-1 after:top-[36%] after:left-[37%] after:aspect-square after:w-[27%] after:rounded-full after:bg-ink/60 after:backdrop-blur after:transition-transform after:duration-700 group-hover:before:rotate-8 group-hover:before:scale-105 group-hover:after:scale-90 max-sm:min-h-[320px] ${artwork}`}
-        >
-          <span className="font-display text-lg italic">0{index + 1}</span>
-          <span
-            className="pointer-events-none absolute top-1/2 right-6 left-6 h-px bg-white/10 transition-opacity duration-500 group-hover:opacity-70"
-            aria-hidden="true"
-          />
-          <span
-            className="pointer-events-none absolute top-6 bottom-6 left-1/2 w-px bg-white/10 transition-opacity duration-500 group-hover:opacity-70"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute top-[12%] left-[12%] aspect-square w-[76%] rounded-full border border-dashed border-white/15 [animation:orbit_36s_linear_infinite]"
-            aria-hidden="true"
-          />
-          <span
-            className="pointer-events-none absolute top-[12%] right-6 border border-white/15 px-1.5 py-1 font-sans text-[.44rem] font-bold tracking-[.16em] text-white/55 opacity-0 transition-[opacity,transform] duration-500 group-hover:translate-y-1 group-hover:opacity-100"
-            aria-hidden="true"
-          >
-            ORBIT / 0{index + 1}
+        <span className="pointer-events-none absolute top-0 right-[18%] bottom-0 w-px bg-gradient-to-b from-transparent via-white/12 to-transparent transition-colors duration-500 group-hover:via-violet-light/35" aria-hidden="true" />
+        <span className="pointer-events-none absolute top-[43%] right-0 left-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent transition-colors duration-500 group-hover:via-violet-light/25" aria-hidden="true" />
+
+        <div className="relative z-10 flex items-center justify-between gap-4 text-[.52rem] font-bold uppercase tracking-[.14em] text-[#928a9d]">
+          <span>Case / 0{index + 1}</span>
+          <span className="border border-violet-light/40 px-2 py-1 text-[.46rem] text-[#baa5f7]">
+            {project.status}
           </span>
-          <p className="absolute bottom-6 left-6 m-0 text-[.51rem] font-bold tracking-[.14em] text-white/60">
-            CASE / {project.year}
-          </p>
         </div>
 
-        <div className="relative flex flex-col justify-center p-[clamp(2rem,5vw,4.2rem)] max-sm:min-h-[380px] max-sm:px-5 max-sm:pt-8 max-sm:pb-20">
+        <div className="relative z-10 mt-6 flex flex-1 flex-col">
           <div className="flex items-center gap-3 text-[.59rem] font-bold uppercase tracking-[.11em] text-[#928a9d]">
             <span>{project.role}</span>
-            <span className="w-max border border-violet-light/40 px-2 py-1 text-[.48rem] font-bold uppercase tracking-[.11em] text-[#baa5f7]">
-              {project.status}
-            </span>
           </div>
 
-          <h3 className="mt-8 mb-4 max-w-[620px] font-display text-[clamp(2.5rem,5vw,5.4rem)] leading-[.92] font-normal tracking-[-.05em] max-sm:text-[clamp(3rem,14vw,4.7rem)]">
-            {project.title}
-          </h3>
-          <p className="m-0 max-w-[540px] text-[.86rem] leading-7 text-muted">
+          <div className="mt-3 mb-2 flex items-start justify-between gap-4">
+            <Link
+              className="font-display text-[clamp(2rem,3.2vw,3.15rem)] leading-[.95] font-normal tracking-[-.045em] transition-colors duration-300 hover:text-violet-light focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-light"
+              href={`/work/${project.slug}`}
+            >
+              {project.title}
+            </Link>
+            {externalHref ? (
+              <a
+                className="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-full border border-paper/15 text-sm text-[#a8a1b4] transition-[background-color,border-color,color,transform] duration-500 hover:rotate-45 hover:border-violet-light/70 hover:bg-violet-light hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-light"
+                href={externalHref}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={externalLabel}
+              >
+                â†—
+              </a>
+            ) : null}
+          </div>
+          <p className="m-0 max-w-[510px] pr-10 text-[.8rem] leading-6 text-muted">
             {project.summary}
           </p>
 
           <ul
-            className="mt-8 mb-0 flex list-none flex-wrap gap-2 p-0"
+            className="mt-auto mb-0 flex list-none flex-wrap gap-1.5 pt-6 pr-10 p-0"
             aria-label="Technologies"
           >
             {project.stack.map((item) => (
               <li
-                className="border border-paper/15 px-2.5 py-1.5 text-[.53rem] font-bold uppercase tracking-[.08em] text-[#97909f]"
+                className="border border-paper/15 px-2 py-1 text-[.48rem] font-bold uppercase tracking-[.08em] text-[#a8a1b4]"
                 key={item}
               >
                 {item}
@@ -484,17 +497,8 @@ function ProjectCard({
             ))}
           </ul>
 
-          <span className="absolute right-8 bottom-8 flex items-center gap-3 text-[.52rem] font-bold tracking-[.14em] text-[#8f879c] transition-colors duration-300 group-hover:text-paper max-sm:right-5 max-sm:bottom-5">
-            <span className="hidden sm:block">READ CASE</span>
-            <span
-              className="grid h-11 w-11 place-items-center rounded-full border border-paper/15 text-base transition-[background-color,border-color,transform] duration-500 group-hover:rotate-45 group-hover:border-violet-light/70 group-hover:bg-violet-light group-hover:text-ink"
-              aria-hidden="true"
-            >
-              ↗
-            </span>
-          </span>
         </div>
-      </Link>
+      </article>
     </Reveal>
   );
 }

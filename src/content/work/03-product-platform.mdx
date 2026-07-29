@@ -1,47 +1,58 @@
 ---
-title: "Your product platform"
-slug: "product-platform"
-summary: "Use this story to demonstrate broad product engineering: a polished interface supported by a thoughtful, production-ready system."
-role: "Software Engineer · add scope"
-year: "20XX"
+title: "CoquitosTravels"
+slug: "coquitos-travels"
+summary: "A bilingual tourism platform for discovering Venezuelan travel packages and managing the reservations and commercial operations behind them."
+role: "Full-Stack Developer"
+year: "2026"
 stack:
-  - "Add frontend"
-  - "Add API"
-  - "Add cloud"
+  - "Supabase Auth"
+  - "Supabase"
+  - "WhatsApp"
+  - "Internationalization"
 cover: "gradient-ink"
 featured: true
-status: "CONTENT PLACEHOLDER"
-links: {}
+status: "LIVE"
+links:
+  live: "https://coquitos-travels-web.vercel.app/"
 ---
 
 ## The problem
 
-Describe the customer need and why the existing experience was not enough.
+CoquitosTravels needed one product that could help travelers discover and
+enquire about tourism packages in Venezuela while giving the internal team the
+tools to manage destinations, packages, reservations, and commercial contacts.
 
-## Context
+## The product
 
-Add product maturity, team shape, technical constraints, and delivery timeline.
+The public site presents featured packages, categories, and destinations. A
+searchable catalogue lets visitors filter by destination or category and sort
+packages by date or price. Each package has a dedicated page with its gallery,
+itinerary, route map, practical information, and frequently asked questions.
 
-## My responsibility
+Visitors can contact the team through WhatsApp or submit an enrolment request
+from the site. Availability takes pending and confirmed reservations into
+account. Prices are shown in USD, with an optional reference conversion to
+bolívares.
 
-State the areas you owned across architecture, implementation, quality, and delivery.
+## Administration
 
-## Process
+The protected admin area uses Supabase Auth and provides a dashboard for
+tracking packages, destinations, and reservations. The team can create and
+update destinations and packages, including images, itineraries, routes,
+categories, FAQs, and publication status.
 
-Explain the important trade-offs and how user feedback or product data guided iteration.
+Reservations are grouped by package and can be created manually or managed as
+pending, confirmed, or cancelled. The platform also includes a lightweight CRM
+for accommodation, restaurant, and activity contacts, with status filters and
+quick editing.
 
-## The solution
+## Product considerations
 
-Describe the finished product through the user journey and its most important system behaviors.
+The experience is responsive and available in Spanish and English. Public and
+administrative flows include loading and error states, plus confirmation and
+error notifications for important actions.
 
-## Architecture
+## Live product
 
-Summarize the frontend, services, data, integrations, deployment, and monitoring.
-
-## Results
-
-Add only outcomes you can verify and explain what they meant for users or the business.
-
-## What I learned
-
-End with a specific engineering or product insight.
+Visit [CoquitosTravels](https://coquitos-travels-web.vercel.app/) to explore
+the public experience.
