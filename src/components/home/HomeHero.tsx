@@ -19,20 +19,22 @@ export function HomeHero() {
       <div className="relative z-3 min-w-0 max-w-full pb-8 max-sm:pb-0">
         <AvailabilityBadge />
 
-        <h1
-          id="hero-title"
+        <p
           className="m-0 mt-7 font-display text-3xl leading-none font-bold tracking-[-.035em] text-[#e8e6eb] sm:text-4xl"
         >
           Anthony Gonzalez
-        </h1>
-
-        <p className="mt-8 mb-0 w-full max-w-full break-words font-display text-[clamp(2.45rem,10.5vw,4.4rem)] leading-[.88] font-bold tracking-[-.04em] text-balance text-violet-light lg:w-max lg:max-w-[780px] lg:text-7xl lg:tracking-[-.055em]">
-          AI Full Stack Engineer
         </p>
 
+        <h1
+          id="hero-title"
+          className="mt-8 mb-0 w-full max-w-full break-words font-display text-[clamp(2.45rem,10.5vw,4.4rem)] leading-[.88] font-bold tracking-[-.04em] text-balance text-violet-light lg:w-max lg:max-w-[820px] lg:text-7xl lg:tracking-[-.055em]"
+        >
+          Full-Stack Engineer building AI products
+        </h1>
+
         <p className="mt-8 mb-0 max-w-full break-words text-[clamp(1rem,1.25vw,1.18rem)] leading-[1.7] text-[#c9c3d0] lg:max-w-[550px]">
-          A Hands-on Experience Developer who likes to create innovative digital
-          solutions with AI, Passion and coffee. ☕
+          I design and build end-to-end digital products, combining modern
+          full-stack engineering with practical AI systems.
         </p>
 
         <div className="mt-8 flex items-center gap-8 max-sm:flex-col max-sm:items-start max-sm:gap-3">

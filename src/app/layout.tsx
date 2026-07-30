@@ -13,13 +13,14 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Anthony Gonzalez — AI Engineer",
+    default: "Anthony Gonzalez — Full-Stack & AI Engineer",
     template: "%s — Anthony Gonzalez",
   },
   description:
-    "AI Engineer designing and building intelligent products where thoughtful engineering meets creative direction.",
+    "Full-stack engineer designing and building end-to-end digital products with practical AI systems.",
   keywords: [
     "AI Engineer",
+    "Full-Stack Engineer",
     "Software Engineer",
     "Next.js",
     "Artificial Intelligence",
@@ -31,16 +32,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    title: "Anthony Gonzalez — AI Engineer",
+    title: "Anthony Gonzalez — Full-Stack & AI Engineer",
     description:
-      "Intelligent products, thoughtful engineering, and creative direction.",
+      "End-to-end digital products built with full-stack engineering and practical AI.",
     siteName: "Anthony Gonzalez Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anthony Gonzalez — AI Engineer",
+    title: "Anthony Gonzalez — Full-Stack & AI Engineer",
     description:
-      "Intelligent products, thoughtful engineering, and creative direction.",
+      "End-to-end digital products built with full-stack engineering and practical AI.",
   },
 };
 

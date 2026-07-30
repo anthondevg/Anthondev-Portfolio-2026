@@ -2,12 +2,14 @@ import { HomeFooter } from "@/components/home/HomeFooter";
 import { HomeHero } from "@/components/home/HomeHero";
 import {
   AboutSection,
+  CapabilitiesSection,
   ContactSection,
   ExperienceSection,
   FocusMarquee,
   WorkSection,
 } from "@/components/home/HomeSections";
 import { Navigation } from "@/components/Navigation";
+import { NeuralCodeSection } from "@/components/home/NeuralCodeSection";
 import { getAllWork } from "@/lib/work";
 
 export default function Home() {
@@ -28,8 +30,10 @@ export default function Home() {
         <HomeHero />
         <FocusMarquee />
         <WorkSection projects={projects} />
+        <CapabilitiesSection />
         <ExperienceSection />
         <AboutSection />
+        <NeuralCodeSection />
         <ContactSection />
       </main>
 

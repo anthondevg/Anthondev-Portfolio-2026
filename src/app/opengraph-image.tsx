@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "Anthony Gonzalez — AI Engineer";
+export const alt = "Anthony Gonzalez — Full-Stack & AI Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -40,10 +40,10 @@ export default async function OpenGraphImage() {
               letterSpacing: "-6px",
             }}
           >
-            AI Engineer
+            Full-Stack &amp; AI Engineer
           </span>
           <span style={{ marginTop: 30, fontSize: 28, color: "#c9bedc" }}>
-            Intelligent products · thoughtful engineering · creative direction
+            End-to-end products · practical AI · thoughtful engineering
           </span>
         </div>
       </div>

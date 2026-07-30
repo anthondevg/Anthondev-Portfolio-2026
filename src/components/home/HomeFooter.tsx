@@ -14,7 +14,7 @@ export function HomeFooter() {
         ANTHON<span className="text-violet-light">DEV</span>
       </Link>
 
-      <p>AI Engineer · San Fernando de Apure, VE · Remote worldwide</p>
+      <p>Full-Stack &amp; AI Engineer · San Fernando de Apure, VE · Remote worldwide</p>
 
       <div className="flex gap-6">
         <a

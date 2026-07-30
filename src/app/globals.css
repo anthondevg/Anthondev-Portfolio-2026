@@ -114,6 +114,21 @@
   0% { opacity: .55; transform: scale(.8); }
   70%, 100% { opacity: 0; transform: scale(2.25); }
 }
+@keyframes neural-code-drift {
+  0%, 100% { opacity: .34; transform: translate3d(0, 0, 0); }
+  50% { opacity: .78; transform: translate3d(12px, -7px, 0); }
+}
+@keyframes neural-orbit {
+  to { transform: translate(-50%, -50%) rotate(1turn); }
+}
+
+.neural-code-signal {
+  animation: neural-code-drift 12s ease-in-out infinite;
+}
+
+.neural-orbit {
+  animation: neural-orbit 32s linear infinite;
+}
 
 .work-mesh {
   position: relative;

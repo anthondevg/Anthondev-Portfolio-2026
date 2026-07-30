@@ -88,17 +88,23 @@ const experience = [
 const contactLinks = [
   {
     label: "Email",
-    value: "robwert1997@gmail.com",
-    href: "mailto:robwert1997@gmail.com",
+    title: "Start a conversation",
+    detail:
+      process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "robwert1997@gmail.com",
+    href: `mailto:${
+      process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "robwert1997@gmail.com"
+    }`,
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/anthondev",
+    title: "Connect on LinkedIn",
+    detail: "linkedin.com/in/anthondev",
     href: "https://www.linkedin.com/in/anthondev/",
   },
   {
     label: "Upwork",
-    value: "upwork.com/freelancers/~0176de8d20e4948f58",
+    title: "Work with me on Upwork",
+    detail: "Freelance profile",
     href: "https://www.upwork.com/freelancers/~0176de8d20e4948f58",
   },
 ];
@@ -185,8 +191,8 @@ export function WorkSection({ projects }: WorkSectionProps) {
     >
       <SectionHeading
         label="Selected work"
-        title="Building ideas into useful systems."
-        copy="A curated set of product stories. Real project information can replace the clearly marked draft content below."
+        title="Full-stack products, made more capable with AI."
+        copy="Selected products built from interface to infrastructure, with practical AI where it creates measurable value."
       />
 
       <div className="grid gap-4 md:grid-cols-2">
@@ -206,8 +212,18 @@ export function AboutSection() {
       id="about"
       className={`${sectionShell} relative isolate overflow-hidden border-t border-paper/15 py-[clamp(7rem,12vw,11rem)]`}
     >
-      <Reveal className="grid grid-cols-[.72fr_1.28fr] gap-8 max-md:grid-cols-1">
-        <p className={eyebrow}>Profile / approach</p>
+      <Reveal className="grid grid-cols-[minmax(240px,.58fr)_minmax(0,1.42fr)] items-start gap-[clamp(3rem,7vw,7rem)] max-md:grid-cols-1">
+        <div className="max-w-[350px]">
+          <p className={eyebrow}>Profile / approach</p>
+          <h2 className="mt-8 mb-5 font-cta text-[clamp(2.7rem,4.8vw,4.8rem)] leading-[.92] font-normal tracking-[-.04em]">
+            Engineering with judgment.
+          </h2>
+          <p className="m-0 max-w-[34ch] text-[.9rem] leading-7 text-muted">
+            I turn product problems into dependable systems, using AI where it
+            creates real value and conventional software where it is the better
+            tool.
+          </p>
+        </div>
         <div className="min-w-0 overflow-hidden" aria-label="Abstract generative ASCII artwork">
           <pre className="m-0 font-mono text-[clamp(.22rem,.65vw,.62rem)] leading-[1.02] tracking-[-.035em] text-violet-light">{String.raw`    %%%%%%#**
        %*==*#@@#-=-=**#%
@@ -239,12 +255,10 @@ export function AboutSection() {
         </div>
       </Reveal>
 
-      <div className="relative mt-[clamp(5rem,10vw,9rem)] ml-[calc(36%+1rem)] grid grid-cols-3 border-y border-paper/15 max-md:ml-0 max-sm:grid-cols-1">
-        {principles.map((principle, index) => (
+      <div className="relative mt-[clamp(5rem,8vw,7rem)] grid grid-cols-3 border-y border-paper/15 max-sm:grid-cols-1">
+        {principles.map((principle) => (
           <Reveal
-            className={`relative min-h-[290px] border-r border-paper/15 pt-6 pr-6 pb-8 last:border-r-0 max-sm:min-h-[250px] max-sm:border-r-0 max-sm:border-b max-sm:py-7 before:absolute before:top-6 before:left-0 before:h-px before:w-10 before:bg-violet-light/55 ${
-              index ? "pl-6 max-sm:pl-0" : ""
-            }`}
+            className="relative min-h-[310px] border-r border-paper/15 px-[clamp(1.5rem,3vw,3rem)] pt-7 pb-9 first:pl-0 last:border-r-0 last:pr-0 max-sm:min-h-[250px] max-sm:border-r-0 max-sm:border-b max-sm:px-0 max-sm:py-7 before:absolute before:top-7 before:left-[clamp(1.5rem,3vw,3rem)] before:h-px before:w-10 before:bg-violet-light/55 first:before:left-0 max-sm:before:left-0"
             key={principle.number}
           >
             <span className="font-display text-sm italic text-[#92869e]">
@@ -409,21 +423,10 @@ export function ContactSection() {
           </h2>
         </Reveal>
 
-        <Reveal className="mt-[clamp(4.5rem,9vw,8rem)] border-t border-paper/15">
-          {contactLinks.map((contact) => (
-            <ContactLink {...contact} key={contact.label} />
+        <Reveal className="mt-[clamp(4.5rem,9vw,8rem)] border-t border-paper/20">
+          {contactLinks.map((contact, index) => (
+            <ContactLink {...contact} index={index} key={contact.label} />
           ))}
-          <div className="grid grid-cols-[.55fr_1.4fr_auto] items-center gap-8 border-b border-paper/15 py-6 text-[#7c7483] max-sm:grid-cols-[1fr_auto] max-sm:gap-2">
-            <span className="text-[.57rem] font-bold uppercase tracking-[.11em] text-[#80778b] max-sm:col-span-full">
-              Résumé
-            </span>
-            <strong className="font-display text-[clamp(1.5rem,3vw,2.7rem)] font-normal">
-              Add PDF to enable
-            </strong>
-            <i className="grid h-10 w-10 place-items-center rounded-full border border-paper/15 not-italic">
-              —
-            </i>
-          </div>
         </Reveal>
       </div>
     </section>
@@ -537,30 +540,45 @@ function ProjectCard({
 
 function ContactLink({
   label,
-  value,
+  title,
+  detail,
   href,
+  index,
 }: {
   label: string;
-  value: string;
+  title: string;
+  detail: string;
   href: string;
+  index: number;
 }) {
   const isExternal = href.startsWith("http");
 
   return (
     <a
-      className="group grid grid-cols-[.55fr_1.4fr_auto] items-center gap-8 border-b border-paper/15 py-6 max-sm:grid-cols-[1fr_auto] max-sm:gap-2"
+      className="group relative isolate grid min-h-[132px] grid-cols-[minmax(9rem,.5fr)_minmax(0,1.5fr)_auto] items-center gap-x-10 overflow-hidden border-b border-paper/20 py-7 transition-colors duration-500 before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:bg-[radial-gradient(circle_at_72%_50%,rgba(112,71,255,.18),transparent_34%)] before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100 max-md:grid-cols-[7rem_minmax(0,1fr)_auto] max-md:gap-x-6 max-sm:min-h-[148px] max-sm:grid-cols-[minmax(0,1fr)_3rem] max-sm:gap-x-4 max-sm:py-6"
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noreferrer" : undefined}
     >
-      <span className="text-[.57rem] font-bold uppercase tracking-[.11em] text-[#80778b] max-sm:col-span-full">
+      <span className="flex items-center gap-4 text-[.59rem] font-bold uppercase tracking-[.13em] text-[#a39aaf] max-sm:self-end">
+        <span
+          className="font-display text-xs font-normal italic tracking-normal text-violet-light/80"
+          aria-hidden="true"
+        >
+          0{index + 1}
+        </span>
         {label}
       </span>
-      <strong className="font-display text-[clamp(1.5rem,3vw,2.7rem)] font-normal">
-        {value}
-      </strong>
-      <i className="grid h-10 w-10 place-items-center rounded-full border border-paper/15 not-italic transition group-hover:bg-paper group-hover:text-ink">
-                <ExternalArrowIcon />
+      <span className="min-w-0 max-sm:row-start-2 max-sm:mt-3">
+        <strong className="block font-display text-[clamp(1.75rem,3.25vw,3.25rem)] leading-[1.02] font-normal tracking-[-.03em] text-paper transition-colors group-hover:text-white">
+          {title}
+        </strong>
+        <span className="mt-2 block truncate text-[.72rem] tracking-[.015em] text-[#92899e] max-sm:whitespace-normal max-sm:break-words">
+          {detail}
+        </span>
+      </span>
+      <i className="grid h-12 w-12 place-items-center rounded-full border border-paper/20 not-italic transition-[background-color,color,border-color,transform] duration-300 group-hover:rotate-45 group-hover:border-paper group-hover:bg-paper group-hover:text-ink max-sm:row-span-2 max-sm:row-start-1">
+        <ExternalArrowIcon />
       </i>
     </a>
   );
