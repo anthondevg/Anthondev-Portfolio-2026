@@ -24,6 +24,14 @@ export async function generateMetadata({
   return {
     title: project.title,
     description: project.summary,
+    alternates: {
+      canonical: `/work/${project.slug}`,
+    },
+    openGraph: {
+      title: project.title,
+      description: project.summary,
+      url: `/work/${project.slug}`,
+    },
   };
 }
 
@@ -32,6 +40,11 @@ export default async function WorkPage({ params }: WorkPageProps) {
   const project = getWorkBySlug(slug);
 
   if (!project) notFound();
+
+  const projects = getAllWork();
+  const projectIndex = projects.findIndex((item) => item.slug === project.slug);
+  const nextProject =
+    projects.length > 1 ? projects[(projectIndex + 1) % projects.length] : null;
 
   return (
     <>
@@ -57,28 +70,58 @@ export default async function WorkPage({ params }: WorkPageProps) {
 
         <div className={`case-cover ${project.cover}`} aria-hidden="true">
           <div />
-          <span>CASE STUDY / CONTENT DRAFT</span>
+          <span>{project.title} / Case study</span>
         </div>
 
         <article className="case-content section-shell">
-          <aside>
-            <p>Case study note</p>
-            <span>
-              This structure is ready for verified project information, images,
-              architecture diagrams, and results.
-            </span>
+          <aside aria-label="Project details">
+            <p>Project details</p>
+            <dl className="m-0 grid gap-5 text-[.72rem] leading-5">
+              <div>
+                <dt className="mb-1 text-[.52rem] font-bold uppercase tracking-[.11em] text-[#77707e]">
+                  Role
+                </dt>
+                <dd className="m-0 text-[#b5aebd]">{project.role}</dd>
+              </div>
+              <div>
+                <dt className="mb-1 text-[.52rem] font-bold uppercase tracking-[.11em] text-[#77707e]">
+                  Year
+                </dt>
+                <dd className="m-0 text-[#b5aebd]">{project.year}</dd>
+              </div>
+              <div>
+                <dt className="mb-1 text-[.52rem] font-bold uppercase tracking-[.11em] text-[#77707e]">
+                  Availability
+                </dt>
+                <dd className="m-0 text-[#b5aebd]">{project.status}</dd>
+              </div>
+            </dl>
+            <div className="mt-7 flex flex-col items-start gap-3 text-[.68rem] font-bold text-violet-light">
+              {project.links?.live ? (
+                <a href={project.links.live} target="_blank" rel="noreferrer">
+                  Live product <span aria-hidden="true">↗</span>
+                </a>
+              ) : null}
+              {project.links?.source ? (
+                <a href={project.links.source} target="_blank" rel="noreferrer">
+                  Source code <span aria-hidden="true">↗</span>
+                </a>
+              ) : null}
+            </div>
           </aside>
           <div className="prose">
             <MDXRemote source={project.content} />
           </div>
         </article>
 
-        <nav className="case-next section-shell" aria-label="Case study navigation">
-          <span>Next step</span>
-          <Link href="/#contact">
-            Add the real project story <i aria-hidden="true">↗</i>
-          </Link>
-        </nav>
+        {nextProject ? (
+          <nav className="case-next section-shell" aria-label="Case study navigation">
+            <span>Next case study</span>
+            <Link href={`/work/${nextProject.slug}`}>
+              {nextProject.title} <i aria-hidden="true">→</i>
+            </Link>
+          </nav>
+        ) : null}
       </main>
     </>
   );

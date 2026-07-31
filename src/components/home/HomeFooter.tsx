@@ -4,19 +4,21 @@ import { sectionShell } from "./styles";
 export function HomeFooter() {
   return (
     <footer
-      className={`${sectionShell} flex min-h-[110px] items-center justify-between gap-8 text-[.55rem] font-bold uppercase tracking-[.08em] text-[#726b79] max-sm:flex-col max-sm:items-start max-sm:py-10`}
+      className={`${sectionShell} flex min-h-[128px] items-center justify-between gap-8 text-xs font-bold uppercase tracking-[.06em] text-[#9b94a3] max-sm:flex-col max-sm:items-start max-sm:gap-5 max-sm:py-10`}
     >
       <Link
-        className="text-[.86rem] font-extrabold tracking-[-.04em]"
+        className="text-base font-extrabold tracking-[-.04em] text-paper"
         href="#main"
         aria-label="Back to top"
       >
         ANTHON<span className="text-violet-light">DEV</span>
       </Link>
 
-      <p>Full-Stack &amp; AI Engineer · San Fernando de Apure, VE · Remote worldwide</p>
+      <p className="m-0 max-w-[480px] leading-5">
+        Full-Stack &amp; AI Engineer · San Fernando de Apure, VE · Remote worldwide
+      </p>
 
-      <div className="flex gap-6">
+      <div className="flex flex-wrap gap-x-6 gap-y-3 text-paper/75">
         <a
           className="hover:text-paper"
           href="https://github.com/anthondevg"

@@ -90,9 +90,9 @@ const contactLinks = [
     label: "Email",
     title: "Start a conversation",
     detail:
-      process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "robwert1997@gmail.com",
+      process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "anthondevx@gmail.com",
     href: `mailto:${
-      process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "robwert1997@gmail.com"
+      process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "anthondevx@gmail.com"
     }`,
   },
   {
@@ -509,7 +509,6 @@ function ProjectCard({
                 aria-label={`Visit ${project.title}`}
               >
                 <ExternalArrowIcon />
-                â†—
               </a>
             ) : null}
             </div>

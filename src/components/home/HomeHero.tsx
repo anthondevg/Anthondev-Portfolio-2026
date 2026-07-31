@@ -12,7 +12,7 @@ export function HomeHero() {
     >
       <HeroBackdrop />
       <div
-        className="absolute -z-1 top-[8%] left-[12%] h-[31rem] w-[42rem] rounded-full bg-violet/10 blur-[150px]"
+        className="absolute -z-1 top-[8%] left-[12%] h-[31rem] w-[42rem] rounded-full bg-violet/10 blur-[150px] max-sm:hidden"
         aria-hidden="true"
       />
 

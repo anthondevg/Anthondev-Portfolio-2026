@@ -18,7 +18,7 @@
     scrollbar-width: thin;
   }
   body {
-    @apply m-0 bg-ink font-sans text-base text-paper antialiased;
+    @apply m-0 overflow-x-clip bg-ink font-sans text-base text-paper antialiased;
     background-image:
       radial-gradient(circle at 12% 13%, rgba(55, 9, 142, .68) 0, rgba(31, 9, 82, .42) 24rem, transparent 48rem),
       radial-gradient(circle at 78% 5%, rgba(28, 12, 78, .28), transparent 36rem),
@@ -84,7 +84,7 @@
   .case-cover div { @apply absolute top-[18%] left-1/4 w-1/2 aspect-square rounded-full border border-white/20 bg-[linear-gradient(145deg,rgba(255,255,255,.16),rgba(0,0,0,.2))] shadow-[0_55px_120px_rgba(0,0,0,.34)] max-sm:top-[20%] max-sm:left-[10%] max-sm:w-[80%]; }
   .case-cover div::before,.case-cover div::after { content:""; @apply absolute -inset-[9%] rounded-full border border-dashed border-white/20; }
   .case-cover div::after { @apply inset-[22%] bg-ink/40 backdrop-blur; }
-  .case-cover > span { @apply absolute right-8 bottom-8 text-[.55rem] font-bold tracking-[.14em] text-white/60 max-sm:right-4 max-sm:bottom-4; }
+  .case-cover > span { @apply absolute right-8 bottom-8 max-w-[calc(100%-2rem)] text-right text-[.55rem] font-bold uppercase tracking-[.14em] text-white/60 max-sm:right-4 max-sm:bottom-4; }
   .gradient-violet { @apply bg-[linear-gradient(135deg,#24104d,#6542bc_62%,#151020)]; }
   .gradient-plum { @apply bg-[#25121f] bg-[radial-gradient(circle_at_25%_20%,#994d73,transparent_34%)]; }
   .gradient-ink { @apply bg-[linear-gradient(140deg,#292238,#101019_70%)]; }

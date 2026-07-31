@@ -12,6 +12,9 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "Anthony Gonzalez — Full-Stack & AI Engineer",
     template: "%s — Anthony Gonzalez",
@@ -45,6 +48,27 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Anthony Gonzalez",
+  url: siteUrl,
+  image: `${siteUrl}/anthony-gonzalez-portrait.jpg`,
+  jobTitle: "Full-Stack & AI Engineer",
+  sameAs: [
+    "https://github.com/anthondevg",
+    "https://www.linkedin.com/in/anthondev/",
+    "https://www.upwork.com/freelancers/~0176de8d20e4948f58",
+  ],
+  knowsAbout: [
+    "Artificial intelligence",
+    "Full-stack development",
+    "Next.js",
+    "TypeScript",
+    "Python",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,7 +76,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
