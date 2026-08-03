@@ -1,8 +1,8 @@
-# Anthony Gonzalez — AI Engineer Portfolio
+# Anthony Gonzalez — Full-Stack & AI Engineer Portfolio
 
-An editorial portfolio for presenting AI engineering work, product thinking,
-and selected case studies. Built with Next.js, TypeScript, Tailwind CSS,
-Motion, React Three Fiber, and local MDX content.
+An editorial portfolio for presenting full-stack development, practical AI
+work, product thinking, and selected case studies. Built with Next.js,
+TypeScript, Tailwind CSS, Motion, React Three Fiber, and local MDX content.
 
 ![Portfolio hero preview](./public/readme-hero.png)
 
@@ -11,9 +11,24 @@ Motion, React Three Fiber, and local MDX content.
 - Responsive single-page portfolio with dedicated case study routes
 - File-based MDX content for project stories
 - Interactive WebGL hero with reduced-motion and non-WebGL fallbacks
-- Dynamic page metadata, Open Graph image, sitemap, and robots configuration
+- Branded mobile navigation with an editorial project index
+- Dynamic metadata, canonical URLs, Open Graph image, sitemap, and robots
+- Structured `Person` data for search engines
 - Local variable fonts and optimized portrait rendering
-- Accessibility features including semantic landmarks and a skip link
+- Accessibility features including semantic landmarks, keyboard navigation,
+  reduced-motion support, and a skip link
+
+## Featured work
+
+The portfolio currently presents two published case studies:
+
+- **AI Job Search UI** — a focused interface for exploring AI-assisted job
+  discovery and application workflows
+- **CoquitosTravels** — a travel experience designed around clear discovery,
+  responsive browsing, and conversion-oriented interactions
+
+Each project has its own `/work/[slug]` route and links to the next featured
+case study, creating a continuous browsing flow.
 
 ## Tech stack
 
@@ -50,6 +65,7 @@ cp .env.example .env.local
 
 ```dotenv
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_CONTACT_EMAIL=anthondevx@gmail.com
 ```
 
 Start the development server:
@@ -94,6 +110,18 @@ src/
 
 public/                  # Static images and downloadable assets
 ```
+
+## Responsive navigation
+
+The desktop header keeps the primary sections and contact action immediately
+available. On mobile, the menu becomes a branded full-screen experience with:
+
+- Numbered navigation links and active visual states
+- Availability, social, and contact information
+- Background decoration consistent with the portfolio identity
+- Page scroll locking while the menu is open
+- Keyboard support through the `Escape` key
+- Layout adjustments for short mobile viewports
 
 ## Managing case studies
 
@@ -145,21 +173,30 @@ This value is used by the metadata configuration, sitemap, and robots file.
 On Vercel, the project falls back to `VERCEL_PROJECT_PRODUCTION_URL` when the
 explicit variable is not set.
 
-Before launch, review and replace:
+The public contact address is configured separately:
 
-- Draft biography, employment history, and case study content
-- Placeholder email, LinkedIn, and GitHub URLs
-- Résumé placeholder and downloadable file
-- Portrait and any temporary project media
-- Site title, description, keywords, and social preview content
-- `NEXT_PUBLIC_SITE_URL` with the final domain
+```dotenv
+NEXT_PUBLIC_CONTACT_EMAIL=anthondevx@gmail.com
+```
+
+It is used by the portfolio's email actions so the address can be changed
+without editing components.
+
+Before publishing:
+
+- Set `NEXT_PUBLIC_SITE_URL` to the final production domain
+- Confirm the contact email, social links, availability, and work history
+- Add only verified project outcomes, screenshots, and external links
+- Review the generated social preview, sitemap, and robots file
+- Run the lint and production build checks
 
 ## Deployment
 
 The project can be deployed to any platform that supports Next.js. For Vercel:
 
 1. Import the repository.
-2. Add `NEXT_PUBLIC_SITE_URL` to the production environment.
+2. Add `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_CONTACT_EMAIL` to the production
+   environment.
 3. Deploy and verify the home page, case study routes, social preview,
    `/sitemap.xml`, and `/robots.txt`.
 
