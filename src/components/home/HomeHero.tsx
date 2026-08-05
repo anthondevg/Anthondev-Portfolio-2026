@@ -1,7 +1,7 @@
 import { CtaButton } from "@/components/CtaButton";
 import { HeroBackdrop } from "@/components/HeroBackdrop";
 import { HeroSocials } from "@/components/HeroSocials";
-import { HeroVisual } from "@/components/HeroVisual";
+import { HeroPortrait, HeroVisual } from "@/components/HeroVisual";
 import { sectionShell } from "./styles";
 
 export function HomeHero() {
@@ -19,8 +19,14 @@ export function HomeHero() {
       <div className="relative z-3 min-w-0 max-w-full pb-8 max-sm:pb-0">
         <AvailabilityBadge />
 
+        <HeroPortrait
+          className="mt-8 hidden w-[46vw] max-w-[180px] max-sm:block"
+          showCaption={false}
+          sizes="46vw"
+        />
+
         <p
-          className="m-0 mt-7 font-display text-3xl leading-none font-bold tracking-[-.035em] text-[#e8e6eb] sm:text-4xl"
+          className="m-0 mt-7 font-display text-3xl leading-none font-bold tracking-[-.035em] text-[#e8e6eb] max-sm:mt-5 sm:text-4xl"
         >
           Anthony Gonzalez
         </p>
