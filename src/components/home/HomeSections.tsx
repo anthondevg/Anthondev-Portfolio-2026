@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { PointerEvent } from "react";
+import { useState, type PointerEvent } from "react";
 import { ExperienceTimeline } from "@/components/home/ExperienceTimeline";
 import { Reveal } from "@/components/Reveal";
 import type { WorkItem } from "@/lib/work";
@@ -187,21 +187,74 @@ export function WorkSection({ projects }: WorkSectionProps) {
   return (
     <section
       id="work"
-      className={`${sectionShell} py-[clamp(5rem,9vw,8rem)]`}
+      className={`${sectionShell} py-[clamp(3rem,6vw,5rem)]`}
     >
-      <SectionHeading
-        label="Selected work"
-        title="Full-stack products, made more capable with AI."
-        copy="Selected products built from interface to infrastructure, with practical AI where it creates measurable value."
-      />
+      <Reveal className="mb-8">
+        <h2 className={eyebrow}>Selected work</h2>
+      </Reveal>
 
       <div className="grid gap-4 md:grid-cols-2">
         {projects.map((project, index) => (
           <ProjectCard project={project} index={index} key={project.slug} />
         ))}
       </div>
+    </section>
+  );
+}
 
-      <div className="work-mesh" aria-hidden="true" />
+export function ProfileSection() {
+  return (
+    <section
+      id="profile"
+      className="relative isolate overflow-hidden border-t border-paper/15"
+    >
+      <div
+        className="pointer-events-none absolute top-[-18rem] left-[36%] -z-1 h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(circle,rgba(112,71,255,.18),transparent_66%)]"
+        aria-hidden="true"
+      />
+
+      <Reveal
+        className={`${sectionShell} grid grid-cols-[minmax(170px,.42fr)_minmax(0,1.58fr)] gap-[clamp(3rem,7vw,7rem)] py-[clamp(7rem,12vw,11rem)] max-md:grid-cols-1 max-md:gap-10`}
+      >
+        <div>
+          <p className={eyebrow}>About me</p>
+          <p className="mt-5 mb-0 max-w-[18ch] text-[.68rem] leading-5 font-bold uppercase tracking-[.11em] text-[#827a8d]">
+            Venezuela
+            <span className="block text-violet-light">Working remotely</span>
+          </p>
+        </div>
+
+        <div className="min-w-0">
+          <h2 className="m-0 max-w-[900px] font-display text-[clamp(2.4rem,4.6vw,4.5rem)] leading-[1.02] font-normal tracking-[-.035em] text-paper">
+            I&apos;m Anthony Gonzalez, a Full-Stack &amp; AI Engineer from
+            Venezuela.
+          </h2>
+
+          <div className="mt-[clamp(3.5rem,7vw,6rem)] grid grid-cols-2 border-y border-paper/15 max-sm:grid-cols-1">
+            <div className="border-r border-paper/15 py-7 pr-[clamp(1.5rem,4vw,4rem)] max-sm:border-r-0 max-sm:border-b max-sm:pr-0">
+              <p className="m-0 text-[.62rem] font-bold uppercase tracking-[.13em] text-[#918999]">
+                What I build
+              </p>
+              <p className="mt-5 mb-0 max-w-[38ch] text-[clamp(1rem,1.45vw,1.25rem)] leading-8 text-[#d4cedc]">
+                I build end-to-end digital products, from intuitive interfaces
+                to reliable backend systems and practical AI experiences.
+              </p>
+            </div>
+
+            <div className="py-7 pl-[clamp(1.5rem,4vw,4rem)] max-sm:pl-0">
+              <p className="m-0 text-[.62rem] font-bold uppercase tracking-[.13em] text-[#918999]">
+                How I work
+              </p>
+              <p className="mt-5 mb-0 max-w-[44ch] text-[.92rem] leading-7 text-muted">
+                I like working close to the problem, not just the specification,
+                so I can understand the business logic, make thoughtful technical
+                decisions, and help shape solutions that are useful, clear, and
+                built to last.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
@@ -224,7 +277,11 @@ export function AboutSection() {
             tool.
           </p>
         </div>
-        <div className="min-w-0 overflow-hidden" aria-label="Abstract generative ASCII artwork">
+
+        <div
+          className="min-w-0 overflow-hidden"
+          aria-label="Abstract generative ASCII artwork"
+        >
           <pre className="m-0 font-mono text-[clamp(.22rem,.65vw,.62rem)] leading-[1.02] tracking-[-.035em] text-violet-light">{String.raw`    %%%%%%#**
        %*==*#@@#-=-=**#%
           #+=--+=-==:..:*                             @%##
@@ -405,25 +462,69 @@ export function CapabilitiesSection() {
 }
 
 export function ContactSection() {
+  const [emailCopied, setEmailCopied] = useState(false);
+  const email = contactLinks[0].detail;
+
+  async function copyEmail() {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        copyWithFallback(email);
+      }
+      setEmailCopied(true);
+      window.setTimeout(() => setEmailCopied(false), 2200);
+    } catch {
+      try {
+        copyWithFallback(email);
+        setEmailCopied(true);
+        window.setTimeout(() => setEmailCopied(false), 2200);
+      } catch {
+        setEmailCopied(false);
+      }
+    }
+  }
+
   return (
     <section
       id="contact"
-      className="border-t border-paper/15 bg-[radial-gradient(circle_at_80%_20%,rgba(112,71,255,.28),transparent_33%),linear-gradient(145deg,#180c21,#0b0912_60%)]"
+      className="border-t border-paper/15 bg-[radial-gradient(circle_at_18%_24%,rgba(112,71,255,.26),transparent_31%),linear-gradient(145deg,#150b1d,#0b0912_62%)]"
     >
       <div
-        className={`${sectionShell} pt-[clamp(7rem,12vw,11rem)] pb-[clamp(5rem,8vw,8rem)]`}
+        className={`${sectionShell} grid grid-cols-[minmax(0,.9fr)_minmax(440px,1.1fr)] items-center gap-[clamp(4rem,8vw,8rem)] py-[clamp(5rem,9vw,8rem)] max-lg:grid-cols-1 max-lg:gap-14`}
       >
-        <Reveal>
-          <p className={eyebrow}>Have an interesting problem?</p>
-          <h2 className="mt-8">
-            Let&apos;s build something{" "}
-            <em className="block font-normal text-violet-light">
-              worth remembering.
-            </em>
+        <Reveal className="max-w-[600px]">
+          <p className={eyebrow}>Contact / availability</p>
+          <h2 className="mt-8 mb-6 font-cta text-[clamp(3.6rem,6.7vw,6.8rem)] leading-[.88] font-normal tracking-[-.055em] max-sm:text-[clamp(3.2rem,15vw,4.6rem)]">
+            Have a product
+            <span className="block text-violet-light">worth building?</span>
           </h2>
+          <p className="m-0 max-w-[46ch] text-[.92rem] leading-7 text-muted">
+            I&apos;m available for remote product engineering work across
+            full-stack systems, AI experiences, and ambitious digital products.
+          </p>
+
+          <p className="mt-8 mb-0 flex w-max max-w-full items-center gap-3 border border-[#7ee2ab]/20 bg-[#7ee2ab]/[.045] px-4 py-3 text-[.62rem] font-bold uppercase tracking-[.12em] text-[#c9f3dc]">
+            <span
+              className="h-2 w-2 shrink-0 rounded-full bg-[#7ee2ab] shadow-[0_0_12px_rgba(126,226,171,.9)]"
+              aria-hidden="true"
+            />
+            Available for remote opportunities
+          </p>
         </Reveal>
 
-        <Reveal className="mt-[clamp(4.5rem,9vw,8rem)] border-t border-paper/20">
+        <Reveal className="overflow-hidden rounded-md border border-paper/15 bg-[#100d16]/80 shadow-[0_24px_70px_rgba(0,0,0,.22)] backdrop-blur-sm">
+          <div className="flex items-center justify-between gap-6 border-b border-paper/15 px-6 py-4 text-[.56rem] font-bold uppercase tracking-[.13em] text-[#827a8d] max-sm:px-5">
+            <span>Choose a channel</span>
+            <button
+              className="-my-1 border border-paper/15 px-2.5 py-2 text-[#c9c1d4] transition-colors hover:border-violet-light/60 hover:text-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-light"
+              type="button"
+              onClick={copyEmail}
+              aria-live="polite"
+            >
+              {emailCopied ? "Email copied" : "Copy email"}
+            </button>
+          </div>
           {contactLinks.map((contact, index) => (
             <ContactLink {...contact} index={index} key={contact.label} />
           ))}
@@ -431,6 +532,22 @@ export function ContactSection() {
       </div>
     </section>
   );
+}
+
+function copyWithFallback(value: string) {
+  const input = document.createElement("textarea");
+  input.value = value;
+  input.setAttribute("readonly", "");
+  input.style.position = "fixed";
+  input.style.opacity = "0";
+  document.body.appendChild(input);
+  input.select();
+  const didCopy = document.execCommand("copy");
+  input.remove();
+
+  if (!didCopy) {
+    throw new Error("Clipboard copy failed");
+  }
 }
 
 function SectionHeading({ label, title, copy }: SectionHeadingProps) {
@@ -554,12 +671,12 @@ function ContactLink({
 
   return (
     <a
-      className="group relative isolate grid min-h-[132px] grid-cols-[minmax(9rem,.5fr)_minmax(0,1.5fr)_auto] items-center gap-x-10 overflow-hidden border-b border-paper/20 py-7 transition-colors duration-500 before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:bg-[radial-gradient(circle_at_72%_50%,rgba(112,71,255,.18),transparent_34%)] before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100 max-md:grid-cols-[7rem_minmax(0,1fr)_auto] max-md:gap-x-6 max-sm:min-h-[148px] max-sm:grid-cols-[minmax(0,1fr)_3rem] max-sm:gap-x-4 max-sm:py-6"
+      className="group relative isolate grid min-h-[116px] grid-cols-[5.5rem_minmax(0,1fr)_2.75rem] items-center gap-x-5 overflow-hidden border-b border-paper/15 px-6 py-5 transition-colors duration-500 last:border-b-0 before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:bg-[linear-gradient(90deg,rgba(112,71,255,.14),transparent_72%)] before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100 focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-violet-light max-sm:min-h-[108px] max-sm:grid-cols-[minmax(0,1fr)_2.5rem] max-sm:gap-x-4 max-sm:px-5"
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noreferrer" : undefined}
     >
-      <span className="flex items-center gap-4 text-[.59rem] font-bold uppercase tracking-[.13em] text-[#a39aaf] max-sm:self-end">
+      <span className="flex items-center gap-3 text-[.56rem] font-bold uppercase tracking-[.12em] text-[#9d94a8] max-sm:col-start-1 max-sm:self-end">
         <span
           className="font-display text-xs font-normal italic tracking-normal text-violet-light/80"
           aria-hidden="true"
@@ -568,15 +685,15 @@ function ContactLink({
         </span>
         {label}
       </span>
-      <span className="min-w-0 max-sm:row-start-2 max-sm:mt-3">
-        <strong className="block font-display text-[clamp(1.75rem,3.25vw,3.25rem)] leading-[1.02] font-normal tracking-[-.03em] text-paper transition-colors group-hover:text-white">
+      <span className="min-w-0 max-sm:col-start-1 max-sm:row-start-2 max-sm:mt-2">
+        <strong className="block font-display text-[clamp(1.55rem,2.5vw,2.25rem)] leading-none font-normal tracking-[-.035em] text-paper transition-colors group-hover:text-white">
           {title}
         </strong>
-        <span className="mt-2 block truncate text-[.72rem] tracking-[.015em] text-[#92899e] max-sm:whitespace-normal max-sm:break-words">
+        <span className="mt-2 block truncate text-[.66rem] tracking-[.015em] text-[#8d8498] max-sm:whitespace-normal max-sm:break-words">
           {detail}
         </span>
       </span>
-      <i className="grid h-12 w-12 place-items-center rounded-full border border-paper/20 not-italic transition-[background-color,color,border-color,transform] duration-300 group-hover:rotate-45 group-hover:border-paper group-hover:bg-paper group-hover:text-ink max-sm:row-span-2 max-sm:row-start-1">
+      <i className="grid h-11 w-11 place-items-center rounded-full border border-paper/20 not-italic transition-[background-color,color,border-color,transform] duration-300 group-hover:rotate-45 group-hover:border-paper group-hover:bg-paper group-hover:text-ink max-sm:col-start-2 max-sm:row-span-2 max-sm:row-start-1 max-sm:h-10 max-sm:w-10">
         <ExternalArrowIcon />
       </i>
     </a>

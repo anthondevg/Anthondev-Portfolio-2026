@@ -103,9 +103,6 @@
 
 @keyframes marquee { to { transform: translateX(-50%); } }
 @keyframes orbit { to { transform: rotate(1turn); } }
-@keyframes mesh-drift {
-  to { background-position: 0 44px, 0 44px; }
-}
 @keyframes availability-shimmer {
   0%, 18% { transform: translateX(-220%); }
   58%, 100% { transform: translateX(520%); }
@@ -114,47 +111,6 @@
   0% { opacity: .55; transform: scale(.8); }
   70%, 100% { opacity: 0; transform: scale(2.25); }
 }
-@keyframes neural-code-drift {
-  0%, 100% { opacity: .34; transform: translate3d(0, 0, 0); }
-  50% { opacity: .78; transform: translate3d(12px, -7px, 0); }
-}
-@keyframes neural-orbit {
-  to { transform: translate(-50%, -50%) rotate(1turn); }
-}
-
-.neural-code-signal {
-  animation: neural-code-drift 12s ease-in-out infinite;
-}
-
-.neural-orbit {
-  animation: neural-orbit 32s linear infinite;
-}
-
-.work-mesh {
-  position: relative;
-  height: clamp(7rem, 13vw, 11rem);
-  margin-top: clamp(2.5rem, 5vw, 4.5rem);
-  overflow: hidden;
-  perspective: 520px;
-}
-
-.work-mesh::before {
-  position: absolute;
-  bottom: -5.5rem;
-  left: -30%;
-  width: 160%;
-  height: 18rem;
-  content: "";
-  opacity: .52;
-  background-image:
-    linear-gradient(rgba(168, 140, 255, .34) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(168, 140, 255, .34) 1px, transparent 1px);
-  background-size: 44px 44px;
-  transform: rotateX(64deg);
-  transform-origin: bottom;
-  animation: mesh-drift 14s linear infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }

@@ -6,10 +6,10 @@ import {
   ContactSection,
   ExperienceSection,
   FocusMarquee,
+  ProfileSection,
   WorkSection,
 } from "@/components/home/HomeSections";
 import { Navigation } from "@/components/Navigation";
-import { NeuralCodeSection } from "@/components/home/NeuralCodeSection";
 import { getAllWork } from "@/lib/work";
 
 export default function Home() {
@@ -32,8 +32,8 @@ export default function Home() {
         <WorkSection projects={projects} />
         <CapabilitiesSection />
         <ExperienceSection />
+        <ProfileSection />
         <AboutSection />
-        <NeuralCodeSection />
         <ContactSection />
       </main>
 
