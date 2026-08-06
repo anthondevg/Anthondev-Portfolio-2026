@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "@fontsource-variable/fraunces";
 import "@fontsource-variable/tasa-orbiter";
 import "@fontsource/momo-trust-display";
@@ -84,6 +85,7 @@ export default function RootLayout({
           }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );

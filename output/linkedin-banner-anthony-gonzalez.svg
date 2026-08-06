@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1584" height="396" viewBox="0 0 1584 396" role="img" aria-labelledby="title desc">
+  <title id="title">Anthony Gonzalez — LinkedIn banner</title>
+  <desc id="desc">A dark editorial technology banner with violet observatory light, geometric grid lines, orbital instrumentation and professional positioning text.</desc>
+
+  <defs>
+    <radialGradient id="violet-source" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1138 179) rotate(171) scale(690 342)">
+      <stop offset="0" stop-color="#7047ff" stop-opacity=".45"/>
+      <stop offset=".38" stop-color="#381688" stop-opacity=".24"/>
+      <stop offset=".74" stop-color="#160c2d" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#08070d" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="plum-haze" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1502 58) rotate(137) scale(451 253)">
+      <stop offset="0" stop-color="#8a466e" stop-opacity=".28"/>
+      <stop offset=".48" stop-color="#25121f" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#08070d" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="field" x1="0" y1="0" x2="1584" y2="396" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#120628"/>
+      <stop offset=".42" stop-color="#0a0811"/>
+      <stop offset="1" stop-color="#10101b"/>
+    </linearGradient>
+    <linearGradient id="hairline" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#f0ecf5" stop-opacity="0"/>
+      <stop offset=".18" stop-color="#f0ecf5" stop-opacity=".13"/>
+      <stop offset=".83" stop-color="#a88cff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#a88cff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="orb-core" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1349 196) rotate(90) scale(140)">
+      <stop offset="0" stop-color="#a88cff" stop-opacity=".11"/>
+      <stop offset=".58" stop-color="#7047ff" stop-opacity=".075"/>
+      <stop offset="1" stop-color="#08070d" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="star-field" width="29" height="29" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r=".72" fill="#e7e1f4" fill-opacity=".16"/>
+    </pattern>
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency=".86" numOctaves="3" seed="19" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .11"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="soft-glow" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <clipPath id="orb-clip">
+      <circle cx="1349" cy="198" r="136"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1584" height="396" fill="url(#field)"/>
+  <rect width="1584" height="396" fill="url(#violet-source)"/>
+  <rect width="1584" height="396" fill="url(#plum-haze)"/>
+  <rect x="1110" width="474" height="396" fill="url(#star-field)" opacity=".7" style="mask-image:radial-gradient(circle at 62% 50%, black, transparent 73%)"/>
+
+  <!-- Measured geometric scaffold -->
+  <g fill="none" stroke="#f0ecf5" stroke-opacity=".09" shape-rendering="crispEdges">
+    <path d="M28 34H1556M28 334H1556"/>
+    <path d="M414 34V334M448 34V334M1164 34V334M1510 34V334"/>
+    <path d="M28 58h74M1510 58h46M28 310h128M1455 310h101" stroke-opacity=".18"/>
+  </g>
+  <rect x="448" y="34" width="1" height="300" fill="#7047ff" opacity=".28"/>
+  <rect x="28" y="333" width="1528" height="1" fill="url(#hairline)"/>
+
+  <!-- Left safe-zone instrumentation; kept deliberately quiet for LinkedIn portrait overlap -->
+  <g font-family="Arial, sans-serif" font-weight="700" letter-spacing="2.2" fill="#a8a1b4">
+    <text x="28" y="22" font-size="8" fill-opacity=".72">PORTFOLIO / 2026</text>
+    <text x="301" y="22" font-size="8" fill-opacity=".42">OBSERVATORY 01</text>
+    <text x="28" y="378" font-size="8" fill-opacity=".42">10.4806° N · 66.9036° W</text>
+  </g>
+  <g transform="translate(56 98)" fill="none" stroke="#a88cff">
+    <circle cx="93" cy="93" r="92.5" stroke-opacity=".08"/>
+    <circle cx="93" cy="93" r="66" stroke-opacity=".075" stroke-dasharray="2 7"/>
+    <path d="M0 93h186M93 0v186" stroke-opacity=".045"/>
+    <circle cx="153" cy="50" r="2.6" fill="#a88cff" fill-opacity=".34" stroke="none"/>
+  </g>
+
+  <!-- Editorial message -->
+  <g font-family="Arial, sans-serif">
+    <text x="488" y="76" font-size="10" font-weight="700" letter-spacing="2.35" fill="#c0b8cb">ANTHONY GONZALEZ</text>
+    <text x="488" y="98" font-size="9" font-weight="700" letter-spacing="1.7" fill="#84798f">AI SYSTEMS  /  PRODUCT ENGINEERING  /  FULL-STACK</text>
+
+    <text x="484" y="184" font-family="Fraunces, Georgia, serif" font-size="57" font-weight="400" letter-spacing="-2.8" fill="#f0ecf5">Full-Stack Engineer</text>
+    <text x="484" y="247" font-family="Fraunces, Georgia, serif" font-size="57" font-weight="400" letter-spacing="-3.1" fill="#a88cff">building AI products</text>
+
+    <text x="488" y="285" font-size="10" font-weight="700" letter-spacing="1.8" fill="#aaa2b2">END-TO-END PRODUCTS</text>
+    <circle cx="651" cy="282" r="1.5" fill="#7047ff"/>
+    <text x="667" y="285" font-size="10" font-weight="700" letter-spacing="1.8" fill="#aaa2b2">PRACTICAL AI</text>
+    <circle cx="782" cy="282" r="1.5" fill="#7047ff"/>
+    <text x="798" y="285" font-size="10" font-weight="700" letter-spacing="1.8" fill="#aaa2b2">THOUGHTFUL ENGINEERING</text>
+  </g>
+
+  <!-- Live opportunity signal -->
+  <g transform="translate(488 309)" font-family="Arial, sans-serif">
+    <circle cx="5" cy="5" r="8" fill="#7ee2ab" fill-opacity=".14" filter="url(#soft-glow)"/>
+    <circle cx="5" cy="5" r="3" fill="#7ee2ab"/>
+    <text x="19" y="8" font-size="8.5" font-weight="700" letter-spacing="1.65" fill="#d8f8e7">AVAILABLE FOR REMOTE OPPORTUNITIES</text>
+  </g>
+
+  <!-- Orbital artifact -->
+  <g fill="none">
+    <circle cx="1349" cy="198" r="166" fill="url(#orb-core)" stroke="#f0ecf5" stroke-opacity=".08"/>
+    <circle cx="1349" cy="198" r="147" stroke="#a88cff" stroke-opacity=".13" stroke-dasharray="3 8"/>
+    <circle cx="1349" cy="198" r="117" stroke="#f0ecf5" stroke-opacity=".12"/>
+    <ellipse cx="1349" cy="198" rx="161" ry="63" transform="rotate(-17 1349 198)" stroke="#a88cff" stroke-opacity=".16"/>
+    <ellipse cx="1349" cy="198" rx="56" ry="140" transform="rotate(23 1349 198)" stroke="#f0ecf5" stroke-opacity=".09"/>
+    <path d="M1217 198h264M1349 66v264" stroke="#f0ecf5" stroke-opacity=".055"/>
+  </g>
+
+  <g clip-path="url(#orb-clip)" fill="none" stroke="#a88cff" stroke-opacity=".16">
+    <path d="M1186 246c53-52 80-100 128-79 46 21 72 102 151 46"/>
+    <path d="M1199 270c67-22 75-125 143-112 69 13 69 101 144 85"/>
+    <path d="M1200 145c59 20 89-26 143-16 55 9 76 67 134 47"/>
+    <path d="M1218 110c46 47 86 40 137 51 50 11 71 46 117 62"/>
+    <path d="M1264 65c-16 63 6 93 18 137 14 52 6 91-20 132"/>
+    <path d="M1313 58c-14 54 8 91 15 139 8 53-4 97-31 141"/>
+    <path d="M1377 61c-25 46-12 84-7 132 6 54-3 94-28 141"/>
+    <path d="M1430 80c-31 40-27 73-19 118 8 48 2 86-28 121"/>
+  </g>
+
+  <g font-family="Arial, sans-serif" font-weight="700" letter-spacing="1.35" fill="#918999">
+    <text x="1218" y="64" font-size="7">INTELLIGENCE</text>
+    <text x="1445" y="324" font-size="7">CRAFT</text>
+    <text x="1497" y="198" font-size="7" transform="rotate(90 1497 198)">SIGNAL / 01</text>
+  </g>
+  <circle cx="1478" cy="170" r="8" fill="#7047ff" fill-opacity=".12" filter="url(#soft-glow)"/>
+  <circle cx="1478" cy="170" r="2.7" fill="#a88cff"/>
+  <path d="M1478 170L1519 137" fill="none" stroke="#a88cff" stroke-opacity=".35"/>
+  <text x="1524" y="137" font-family="Arial, sans-serif" font-size="7" font-weight="700" letter-spacing="1.2" fill="#a8a1b4">ACTIVE</text>
+
+  <!-- Subtle optical grain -->
+  <rect width="1584" height="396" filter="url(#grain)" opacity=".22" style="mix-blend-mode:soft-light"/>
+  <rect x=".5" y=".5" width="1583" height="395" fill="none" stroke="#f0ecf5" stroke-opacity=".06"/>
+</svg>
